@@ -1,0 +1,266 @@
+---
+title: "Rworksheet_rabago#1"
+author: "James Bryan Rabago"
+date: "2024-09-20"
+output: pdf_document
+---
+1.
+```{r}
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41)
+```
+a.
+```{r} 
+length(age)
+```
+2.
+```{r}
+ reciprocal_age <- 1/age
+```
+
+
+```{r}
+reciprocal_age
+```
+3.
+```{r}
+ new_age <- c(age,0,age)
+
+```
+
+```{r}
+ new_age
+```
+the value of age doubled in new age and has a zero in between.
+
+4.
+```{r}
+sorted_age <- sort(age)
+```
+
+```{r}
+sorted_age
+```
+5.
+```{r}
+ min_age <- min(age)
+```
+
+```{r}
+max_age <- max(age)
+```
+
+```{r}
+ min_age
+```
+
+```{r}
+ max_age
+```
+
+6.
+```{r}
+data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+```
+
+```{r}
+data
+```
+a.there are 12 data points
+```{r}
+length(data)
+```
+7.the value of data was multiplied to 2
+```{r}
+doubed_data <- data * 2
+```
+
+```{r}
+doubed_data
+```
+8.1
+```{r}
+integers_1to100 <- seq(1,100)
+```
+
+```{r}
+integers_1to100
+```
+8.2
+```{r}
+numbers20to60 <- seq(20,60)
+```
+
+```{r}
+numbers20to60
+```
+8.3
+```{r}
+meanof20to60 <- mean(numbers20to60)
+```
+
+```{r}
+meanof20to60
+```
+
+```{r}
+numbers51to91 <- seq(51,91)
+```
+
+```{r}
+numbers51to91
+```
+8.4
+```{r}
+sumof51to91 <- sum(numbers51to91)
+```
+
+```{r}
+sumof51to91
+```
+8.5
+```{r}
+integers1to1000 <- seq(1,1000)
+```
+
+```{r}
+integers1to1000
+```
+
+```{r}
+a81 <- length(integers_1to100)
+```
+
+```{r}
+a81
+```
+
+
+```{r}
+a82 <- length(numbers20to60)
+```
+
+```{r}
+a82
+```
+
+```{r}
+a83 <- length(meanof20to60)
+```
+
+```{r}
+a83
+```
+
+```{r}
+a84 <- length(sumof51to91)
+```
+
+```{r}
+a84
+```
+
+```{r}
+totaldatapoints <- a81 + a82 + a83 + a84
+```
+a.there are 143 data points
+```{r}
+ totaldatapoints
+```
+
+```{r}
+ maxdatauntil10 <- integers1to1000[integers1to1000 <= 10]
+```
+
+```{r}
+maxdatapoints <- length(maxdatauntil10)
+```
+c.
+```{r}
+maxdatapoints
+```
+9.
+```{r}
+filtered_integers <- Filter(function(i) { all(i %% c(3, 5, 7) != 0) }, seq(100))
+```
+
+```{r}
+filtered_integers
+```
+10.
+```{r}
+sequencebackwards100to1 <- seq(100,1)
+```
+
+```{r}
+sequencebackwards100to1
+```
+11
+```{r}
+ numbersbelow25 <- seq(1,24)
+```
+
+```{r}
+multipliesof3or5 <- numbersbelow25[numbersbelow25 %% 3 == 0| numbersbelow25 %% 5 == 0]
+```
+
+```{r}
+ sumofmultiplies <- sum(multipliesof3or5)
+```
+
+```{r}
+ a10 <- length(sequencebackwards100to1)
+```
+
+```{r}
+ a11 <- length(multipliesof3or5)
+```
+
+```{r}
+datapoints10to11 <- a10 + a11
+```
+a.
+```{r}
+datapoints10to11
+```
+12.
+```{r}
+ # x <- {0 + x + 5 +}   its error because the + sign at the end indicates that   the expression is not finished
+```
+The ouput is error
+
+13.
+```{r}
+  score <- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75, 77)
+```
+
+```{r}
+ score[2]
+```
+
+```{r}
+ score <- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75, 77)
+```
+
+```{r}
+ score[3]
+```
+14
+```{r}
+a <- c(1,2,NA,4,NA,6,7)
+```
+a.
+```{r}
+ print(a,na.print = "-999")
+```
+using the na.print, all the NA vector a become -999
+
+15.
+```{r}
+name = readline(prompt="Input your name: ")
+age = readline(prompt="Input your age: ")
+print(paste("My name is", name, "and I am", age, "years old."))
+print(R.version.string)
+```
+
+the output of the code is it prints the name and age I entered
+
