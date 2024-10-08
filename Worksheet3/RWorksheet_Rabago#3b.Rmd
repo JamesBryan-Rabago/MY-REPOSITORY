@@ -1,0 +1,108 @@
+---
+title: "Rworksheet_Rabago#3b"
+author: "James Bryan Rabago"
+date: "2024-10-08"
+output: pdf_document
+---
+1.a. 
+```{r}
+data <- data.frame(
+Respondents = c(1:20),
+Sex = c(2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2),
+FathersOccupation = c(1, 3, 3, 3, 1, 2, 3, 1, 1, 1, 3, 2, 1, 3, 3, 1, 3, 1, 2, 1) ,
+PersonsatHome = c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 5, 4, 7, 8, 8, 3, 11, 7, 6),
+SiblingsatSchool = c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2),
+TypesofHouses = c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
+)
+data
+```
+1.b. The data has 20 rows and 6 columns 
+
+```{r}
+summary(data)
+```
+1.c. No, the mean is 2.95
+```{r}
+SiblingsatSchool = c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2)
+mean(SiblingsatSchool)
+```
+1.d. 
+```{r}
+first2rows <- data[1:2, ]
+first2rows
+```
+1.e. 
+```{r}
+thirdand5th <- data[c(3, 5), c(2,4)]
+thirdand5th
+```
+1.f. 
+```{r}
+typesofhouses <- data[, "TypesofHouses"]
+typesofhouses
+```
+1.g. 
+```{r}
+malefarmers <- subset(data, Sex == 1 & FathersOccupation == 1)
+malefarmers
+```
+1.h. 
+```{r}
+femalesibling <- subset(data, Sex ==2 & SiblingsatSchool >=5)
+femalesibling
+```
+2.a. 
+-The result shows that an empty data frame has been created with five different data types (integer, double, character, logical, and factor). Each column is initialized but contains no data.
+```{r}
+df = data.frame(Ints=integer(),
+Doubles=double(), Characters=character(),
+Logicals=logical(),
+Factors=factor(),
+stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:")
+print(str(df))
+```
+
+3.a. 
+
+```{r}
+write.csv(data, "HouseholdData.csv")
+HouseholdData <- read.csv("HouseholdData.csv")
+```
+
+
+3.b. 
+```{r}
+HouseholdData$Sex <- factor(HouseholdData$Sex,
+                            levels=c(1,2),
+                            labels = c("Male","Female"))
+HouseholdData
+```
+
+3.c. 
+```{r}
+HouseholdData$TypesofHouses <- factor(HouseholdData$TypesofHouses, levels = c(1, 2, 3),labels = c("Wood", "Congrete", "Semi-congrete"))
+HouseholdData
+```
+
+3.d. 
+```{r}
+HouseholdData$FathersOccupation <- factor(HouseholdData$FathersOccupation, levels = c(1, 2, 3), labels = c("Farmer", "Driver", "Others"))
+HouseholdData
+```
+
+3.e. 
+```{r}
+femaledriver<- subset(HouseholdData, Sex==2 & FathersOccupation =="Driver")
+femaledriver
+```
+
+3.f. 
+```{r}
+fivesiblings<- subset(HouseholdData, Respondents & SiblingsatSchool >= 5)
+fivesiblings
+```
+
+4.
+The graph shows a sentiment analysis of tweets per day from July 14 to July 21, 2020, with three categories: negative, neutral, and positive. On July 14 and 15, there was a significant number of negative tweets, with fewer neutral and positive tweets. On July 17 and 18, the sentiment was more balanced, although negative tweets still dominated. By July 21, the number of negative tweets increased sharply compared to the previous days. The graph highlights the daily fluctuations in sentiment, especially the rise in negative tweets as the week progressed.

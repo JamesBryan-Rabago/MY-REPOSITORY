@@ -1,0 +1,164 @@
+---
+title: "Rworksheet_rabago#3a"
+author: "James Bryan Rabago"
+date: "2024-10-01"
+output: pdf_document
+---
+
+```{r}
+LETTERS
+```
+1.a. You need to produce a vector that contains the first 11 letters.
+```{r}
+f11 <- LETTERS [1:11]
+f11
+```
+
+1.b. Produce a vector that contains the odd numbered letters.
+```{r}
+odd <- LETTERS [seq(1,26,by = 2)]
+odd
+```
+
+1.c. Produce a vector that contains the vowels
+```{r}
+vowels <- LETTERS[c(1,5,9,15,21)]
+vowels
+```
+
+1.d. Produce a vector that contains the last 5 lowercase letters.
+```{r}
+last <- letters [22:26]
+last
+
+```
+1.e.Produce a vector that contains letters between 15 to 24 letters in lowercase.
+
+```{r}
+l15to24 <- letters [15:24]
+l15to24
+```
+
+
+
+2.a.
+```{r}
+city <- c("Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City")
+city
+```
+
+2.b.
+```{r}
+temp <- c(42, 39, 34, 34, 30, 27)
+temp
+```
+
+2.c.
+```{r}
+citytemp <- data.frame(city,temp)
+citytemp
+```
+
+
+2.d.
+```{r}
+names(citytemp) <- c("City","Temperature")
+citytemp
+```
+```
+
+2.e
+```{r}
+str(citytemp)
+```
+-the dataframe citytemp has 6 observations and 2 variables
+the City column is a character vector(chr) while the Temperature column is a numeric(num).
+
+
+2.f.
+```{r}
+citytemp[3:4, ]
+```
+
+2.g.
+
+```{r}
+citytemp[which.max(citytemp$Temperature),]
+```
+
+
+```{r}
+citytemp[which.min(citytemp$Temperature),]
+```
+
+Tuguegarao City has the highest temperature city and Davao City has the lowest
+
+
+2.a.
+```{r}
+mat<- matrix(c(1:8,11:14),ncol=4, nrow=3)
+mat
+```
+
+2.b.
+```{r}
+mat2x <- mat * 2
+mat2x
+```
+
+2.c.
+```{r}
+mat[2, ]
+```
+
+2.d.
+```{r}
+mat[1:2, 3:4]
+```
+
+2.e
+```{r}
+mat[3, 2:3]
+```
+
+2.f
+```{r}
+mat[ ,4]
+```
+
+2.g
+```{r}
+rownames(mat2x) <- c("isa","dalawa","tatlo")
+colnames(mat2x) <- c("uno","dos","tres","quatro")
+mat2x
+```
+
+2.h
+
+```{r}
+dim(mat) <- c(6,2)
+mat
+```
+
+
+3.a.
+```{r}
+values <- rep(c(1,2,3,6,7,8,9,0,3,4,5,1), each=2)
+myarray <- array(values, dim = c(2,4,3))
+myarray
+```
+
+3.b.
+```{r}
+dim(myarray)
+```
+
+2 4 3 is the result
+
+
+3.c
+```{r}
+dimnames(myarray) <- list(c("a","b"),c("A","B","C","D"),c("1st Dimensional Array","2nd Dimensional Array","3rd Dimensional Array"))
+myarray
+```
+
