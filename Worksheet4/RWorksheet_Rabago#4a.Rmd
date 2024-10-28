@@ -87,3 +87,113 @@ import_march <- read.table("import_march.csv", header = TRUE, sep = ",")
 import_march
 ```
 
+6.a
+
+```{r}
+number <- readline(prompt= "Select number 1 to 50: ")
+number
+
+if(number < 1 && number > 50){
+  print("The number selected is beyond the range of 1 to 50")
+}else if (number == 20){print(paste("TRUE"))
+}else {print(paste("The selected number is: ",number))}
+
+```
+7.a.
+
+```{r}
+price <- as.numeric(readline(prompt="Enter the price: "))
+
+minimumbills <- function(price) {
+billsused <- 0
+if (!is.na(price) && price >= 1000) {
+billsused <- billsused + price %/% 1000
+price <- price %% 1000
+}
+
+if (!is.na(price) && price >= 500) {
+billsused <- billsused + price %/% 500
+price <- price %% 500
+}
+if (!is.na(price) && price >= 200) {
+billsused <- billsused + price %/% 200
+price <- price %% 200
+}
+if (!is.na(price) && price >= 100) {
+billsused <- billsused + price %/% 100
+price <- price %% 100
+}
+if (!is.na(price) && price >= 50) {
+billsused <- billsused + price %/% 50
+price <- price %% 50
+}
+return(billsused)
+}
+minimumbills(price)
+
+```
+8.a.
+```{r}
+
+students <- data.frame(
+  Name = c("Annie", "Thea", "Steve", "Hanna"),
+  Grade1 = c(85, 65, 75, 95),
+  Grade2 = c(65, 75, 55, 75),
+  Grade3 = c(85, 90, 80, 100),
+  Grade4 = c(100, 90, 85, 90)
+)
+
+
+students
+
+```
+8.b.
+```{r}
+
+avgscores <- rowSums(students[,-1]) / (ncol(students) - 1)
+
+
+if (any(avgscores > 90)) {
+ 
+  highavg_names <- students$Name[avgscores > 90]
+  highavg_scores <- avgscores[avgscores > 90]
+  
+  
+  for (i in 1:length(highavg_names)) {
+    cat(paste(highavg_names[i], "'s average grade this semester is ", highavg_scores[i], ".\n", sep = ""))
+  }
+} else {
+  cat("No student's average grade is over 90.\n")
+}
+```
+
+8.c.
+```{r}
+
+testaverages <- colSums(students[,-1]) / nrow(students)
+
+
+if (any(testaverages < 80)) {
+  difficult_tests <- which(testaverages < 80)
+  cat(paste ("The", difficult_tests, "th test was difficult.\n"))
+} else {
+  cat("All tests had an average score of 80 or above.\n")
+}
+
+```
+8.d.
+```{r}
+
+for (i in 1:nrow(students)) {
+  highest_score <- students$Grade1[i]
+  if (students$Grade2[i] > highest_score) highest_score <- students$Grade2[i]
+  if (students$Grade3[i] > highest_score) highest_score <- students$Grade3[i]
+  if (students$Grade4[i] > highest_score) highest_score <- students$Grade4[i]
+  
+  if (highest_score > 90) {
+    cat(students$Name[i], "highest grade this semester is", highest_score, "\n")
+  }
+}
+
+```
+

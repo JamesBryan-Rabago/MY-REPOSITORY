@@ -1,0 +1,168 @@
+---
+title: "Rworksheet_Rabago#4b"
+author: "James Bryan Rabago"
+date: "2024-10-29"
+output: pdf_document
+---
+1.
+```{r}
+
+vectorA <- c(1, 2, 3, 4, 5)
+matrix_result <- matrix(0, nrow = 5, ncol = 5)
+
+
+for (i in 1:5) {
+  matrix_result[i, i] <- abs(vectorA[i])  
+}
+
+
+print(matrix_result)
+
+```
+
+2.
+```{r}
+vectorB <- c(1,2,3,4,5)
+
+for (i in vectorB){
+  cat(rep("*",i), "\n")
+}
+```
+3
+```{r}
+fibonacci_sequence <- function(start) {
+  a <- 0
+  b <- 1
+  fib_sequence <- c()
+
+  repeat {
+    fib <- a + b
+    a <- b
+    b <- fib
+    
+    
+    if (fib > 500) {
+      break
+    }
+
+    
+    if (fib >= start) {
+      fib_sequence <- c(fib_sequence, fib)
+    }
+  }
+
+  return(fib_sequence)
+}
+
+
+start_input <- 8  
+if (start_input <= 0) {
+  cat("Please enter a number greater than 0.\n")
+} else {
+ 
+  result <- fibonacci_sequence(start_input)
+  cat("Fibonacci sequence starting from", start_input, "up to 500:\n")
+  print(result)
+}
+
+
+```
+4.a.
+```{r}
+datas <- read.csv("/cloud/project/Worksheet4/Household Data.csv")
+```
+
+4.b.
+```{r}
+male <- subset(datas, Gender == "M")
+male
+female <- subset(datas, Gender == "F")
+female
+numbermale <- nrow(male)
+numberfemale <- nrow(female)
+cat("Number of observations for Male:", numbermale, "\n")
+cat("Number of observations for Female:", numberfemale, "\n")
+```
+
+4.c.
+```{r}
+Plotting <- c(numbermale,numberfemale)
+names(Plotting) <- c("Male", "Female")
+barplot(Plotting, main = "Male and Female", xlab = "Gender", ylab = "Total Numbers", col = c("red", "green"),legend.text = TRUE, beside = TRUE)
+```
+5
+```{r}
+bills <- c("Food", "Electricity", "Savings", "Miscellaneous")
+values <- c(60, 10, 5, 25)
+
+Bills <- matrix(values, nrow = 1, ncol = length(bills), dimnames = list(NULL, bills))
+Bills
+
+Plotters <- pie(values, labels = c("Food", "Electricity", "Savings", "Miscellaneous"),col = c("red", "orange", "yellow", "green"), main = "Expenditures" )
+```
+
+6.a.
+```{r}
+data(iris)
+
+str(iris)
+
+```
+6.b.
+```{r}
+meanvalues <- colMeans(iris[, 1:4])
+meanvalues
+
+```
+6.c.
+```{r}
+species_count <- table(iris$Species)
+
+pie(species_count,
+    main = "Species Distribution",
+    col = c("blue", "violet", "pink"),
+    labels = paste(names(species_count),species_count))
+
+```
+6.d.
+```{r}
+setosa <- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+
+last6_setosa <- tail(setosa)
+last6_versicolor <- tail(versicolor)
+last6_virginica <- tail(virginica)
+
+cat("Last six rows of Setosa:\n")
+print(last6_setosa)
+
+cat("\nLast six rows of Versicolor:\n")
+print(last6_versicolor)
+
+cat("\nLast six rows of Virginica:\n")
+print(last6_virginica)
+
+```
+6.e.
+```{r}
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     col = iris$Species,
+     pch = 19,
+     main = "Iris Dataset",
+     sub = "Sepal Width and Length",
+     xlab = "Sepal Length",
+     ylab = "Sepal Width")
+
+
+legend("topright", legend = levels(iris$Species), col = 1:3, pch = 19)
+
+```
+
+6.f.
+
+
+-The scatterplot shows the relationship between sepal width and length for different iris flower species. Versicolor and Virginica overlap a lot and have similar sepal sizes. However, Setosa is easy to identify because it has smaller sepal sizes than the other two species.
+
+
+
