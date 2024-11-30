@@ -148,22 +148,152 @@ ggplot(mpg, aes(x = cyl, y = displ, color = displ)) +
   scale_color_gradient(low = "blue", high = "red")  
 
 ```
-6
+
+
+6.1. The scatter plot shows a negative correlation between engine displacement (displ) and highway miles per gallon (hwy), suggesting that as engine displacement increases, highway MPG generally decreases. This relationship occurs because larger engines usually burn more fuel, resulting in reduced fuel efficiency on highways, highlighting the balance between engine size and fuel economy in vehicles.
+
 ```{r}
 library(ggplot2)
 
-ggplot(mpg, aes(x = displ, y = hwy, color = cty)) +
+
+
+ggplot(mpg, aes(x = displ, y = hwy, color = displ)) +
   geom_point(size = 3, alpha = 0.7) +
   labs(title = "Relationship between Engine Displacement and Highway MPG",
-       x = "Engine Displacement (litres)",
-       y = "Highway MPG") +
+       x = "Engine Displacement (Liters)",
+       y = "Highway MPG",
+       color = "Engine Displacement") +
+  theme_minimal()
+
+```
+6.2. 
+```{r}
+traffic <- read.csv("/cloud/project/Worksheet4/traffic.csv")
+
+
+```
+a. 
+```{r}
+
+num_observations <- nrow(traffic)
+print(paste("Number of observations:", num_observations))
+
+variables <- colnames(traffic)
+print("Variables in the dataset:")
+print(variables)
+
+```
+b. 
+```{r}
+
+
+junction_subsets <- split(traffic, traffic$Junction)
+
+
+```
+c.
+```{r}
+library(ggplot2)
+library(dplyr)
+
+
+traffic$DateTime <- as.POSIXct(traffic$DateTime, format="%Y-%m-%d %H:%M:%S")
+
+ggplot(traffic, aes(x = DateTime, y = Vehicles, color = factor(Junction))) +
+  geom_line() +
+  labs(title = "Traffic Volume Over Time by Junction",
+       x = "Date and Time",
+       y = "Number of Vehicles",
+       color = "Junction") +
   theme_minimal() +
-  scale_color_gradient(low = "blue", high = "red")  # Color gradient from blue to red
+  facet_wrap(~ Junction, scales = "free_y")
+
+```
+7. 
+```{r}
+library(readxl)
+
+alexa <- read_excel("/cloud/project/Worksheet4/alexa_file.xlsx")
 
 ```
 
--When you run the code, it generates a scatter plot showing the relationship between engine displacement and highway miles per gallon (MPG), with points colored by city MPG. Typically, you'll observe a negative trend: as engine displacement increases, highway MPG decreases, since larger engines tend to consume more fuel. The color coding adds context, with blue points (lower city MPG) often linked to higher displacement and lower highway MPG, while red points (higher city MPG) cluster at lower displacement and higher highway MPG. This illustrates the trade-off between engine size and fuel efficiency.
+a. 
+```{r}
+n <- nrow(alexa)
+print(paste("Number of observations:", n))
+
+v <- colnames(alexa)
+print("Variables in the dataset:")
+print(variables)
+```
+b. 
+```{r}
+library(dplyr)
 
 
+variation_counts <- alexa %>%
+  group_by(variation) %>%
+  summarise(total = n())
 
+print(variation_counts)
+
+```
+c.The plot shows which product variations are most popular, with some clearly preferred over others. It highlights what consumers like the most.
+```{r}
+ggplot(variation_counts, aes(x = reorder(variation, -total), y = total, fill = variation)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Count of Each Product Variation",
+       x = "Product Variation",
+       y = "Total Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  guides(fill = FALSE)
+```
+d. 
+```{r}
+alexa$date <- as.Date(alexa$date)
+
+daily_reviews <- alexa %>%
+  group_by(date) %>%
+  summarise(total_verified_reviews = sum(feedback))
+
+ggplot(daily_reviews, aes(x = date, y = total_verified_reviews)) +
+  geom_line(color = "blue") +
+  labs(title = "Number of Verified Reviews Over Time",
+       x = "Date",
+       y = "Total Verified Reviews") +
+  theme_minimal()
+```
+e. 
+```{r}
+library(dplyr)
+library(ggplot2)
+
+variation_ratings <- alexa %>%
+  group_by(variation) %>%
+  summarise(average_rating = mean(rating, na.rm = TRUE)) %>%
+
+arrange(desc(average_rating))
+
+variation_ratings
+```
+
+
+```{r}
+highvar <- variation_ratings %>%
+  slice(1)
+highvar
+```
+
+
+```{r}
+ggplot(variation_ratings, aes(x = reorder(variation, -average_rating), y = average_rating, fill = variation)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average Rating by Product Variation",
+       x = "Product Variation",
+       y = "Average Rating") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  guides(fill = FALSE)
+```
 
